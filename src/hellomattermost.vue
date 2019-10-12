@@ -141,7 +141,7 @@ export default {
           this.active++;
           //alert('submit!');
           this.axios
-            .post('/matter/..', this.pwd1)
+            .post('/backend/canal/mattermost/user', {'password': this.pwd1})
             .then(function (response)
             {
               switch (response.status)
@@ -171,10 +171,12 @@ export default {
   },
   mounted () {
     axios
-      .get('/matter/auth/identity')
+      .get('/backend/canal/auth/login')
       .then(response => {
         if (response.status === 200) {
           alert('cool');
+        } else if(response.status === 401) {
+          window.location = "/"
         }
       })
   }
