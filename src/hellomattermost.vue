@@ -148,7 +148,7 @@ export default {
               {
                 case 200:
                   // eslint-disable-next-line no-console
-                  console.log;
+                  window.location = "https://mattermost.stage.vivaconagua.org";
                   break;
               }
             }).catch(function (error) {
