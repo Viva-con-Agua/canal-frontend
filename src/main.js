@@ -6,6 +6,7 @@ import VuePassword from 'vue-password'
 import axios from 'axios'
 import VueAxios from "vue-axios";
 import App from './hellomattermost.vue'
+import i18n from './i18n'
 
 Vue.config.productionTip = false
 
@@ -26,5 +27,6 @@ Vue.use(
 
 
 new Vue({
-  render: h => h(App),
+  i18n,
+  render: h => h(App)
 }).$mount('#app')
