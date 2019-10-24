@@ -18,56 +18,19 @@
       <div v-if="active===0">
         <StepOne v-on:accept="next"/>
       </div>
-     
-
-      <el-form v-if="active===1" :model="pwds" :rules="rules"  ref="pwds" :label-position="'top'" label-width="120px">
-        <p>
-          Unser Ziel ist es, die best mögliche User-Experience für dich bereit zu stellen. Damit Du mit möglichst wenigen Klicks zu allen neuen Funktionen gelangst.
-        </p>
-        <p>
-          Allerdings ist es uns nicht möglich, dein Passwort Mattermost mitzuteilen, setzte daher hier unten ein neues!
-        </p>
-        <p style="font-weight: bold">
-          security first!!! password is a bad password
-        </p>
-        <el-form-item label="Passwort:" prop="pwd1">
-        <VuePasswordAuto
-          v-model="pwds.pwd1"
-          id="second"
-          type="text"
-        />
-        </el-form-item>
-        <el-form-item label="Passwort wiederholen:" prop="pwd2" ref="pwds">
-          <el-input v-model="pwds.pwd2" placeholder="Bitte erneut eintippen" show-password></el-input>
-        </el-form-item>
-
-        <el-button-group style="margin: 12px;float: right;" >
-          <el-button @click="prev" icon="el-icon-arrow-left" type="secondary">zurück</el-button>
-          <el-button @click="submitForm" type="primary">weiter<i class="el-icon-arrow-right "></i></el-button>
-        </el-button-group>
-      </el-form>
-
-      <span v-if="active===2">
-
-        <p style="font-weight: bold">
-          Primaaa! Ich danke dir! Viel Spass mit Mattermost.
-        </p>
-
-        <el-button-group style="margin: 12px;float: right;" >
-          <el-button @click="prev" icon="el-icon-arrow-left" type="secondary">zurück</el-button>
-          <el-button @click="next" type="primary">fertig<i class="el-icon-circle-check "></i></el-button>
-        </el-button-group>
-      </span>
-
-      <span v-if="active===3">
-
-        <p>
-          Du wirst in kürze zur Anmeldeseite von Mattermost weitergeleitet...
-          Sollte dies nicht der fall sein klicke bitte <a href="https://mattermost.vivaconagua.org">hier</a>
-        </p>
-
-      </span>
-
+      
+      <div v-if="active===1">
+        <StepTwo v-on:prev="prev" v-on:next="next"/>
+      </div>
+      
+      <div v-if="active===2">
+        <StepThree v-on:prev="prev" v-on:next="next"/>
+      </div>
+      
+      <div v-if="active===3">
+        <StepFour/>
+      </div>
+    
     </el-card>
     <widget-bottom-navigation />
   </div>
@@ -75,45 +38,31 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import {VuePasswordAuto} from 'vue-password'
 import axios from 'axios'
 //import VueAxios from 'vue-axios'
 import {WidgetTopNavigation, WidgetBottomNavigation} from 'vca-widget-navigation'
 import StepOne from '@/components/mattermost/StepOne'
+import StepTwo from '@/components/mattermost/StepTwo'
+import StepThree from '@/components/mattermost/StepThree'
+import StepFour from '@/components/mattermost/StepFour'
+
 
 export default {
   name: 'hellomattermost',
   components: {
  //   VuePassword,
-    VuePasswordAuto,
     WidgetTopNavigation,
     WidgetBottomNavigation,
     StepOne,
+    StepTwo,
+    StepThree,
+    StepFour,
   },
 
   data() {
-    var validatePass = (rule, pwd1, callback) => {
-      if (pwd1 === '') {
-        callback(new Error('Please input the password again'));
-      } else if (pwd1 !== this.pwds.pwd1) {
-        callback(new Error('Two inputs don\'t match!'));
-      } else {
-        callback();
-      }
-    };
     return {
       login: false,
       active: 0,
-      pwds: {
-        pwd1: "",
-        pwd2: "",
-      },
-
-      rules: {
-        pwd2: [
-          { validator: validatePass, trigger: 'blur' }
-        ],
-      }
     };
   },
   methods: {
@@ -136,39 +85,6 @@ export default {
               location = "/arise/#/signin/L2NhbmFs";
           }
         })
-    },
-    submitForm() {
-      this.$refs.pwds.validate((valid) => {
-        if (valid) {
-          this.active++;
-          //alert('submit!');
-          this.axios
-            .post('/backend/canal/mattermost/user', {'password': this.pwd1})
-            .then(function (response)
-            {
-              switch (response.status)
-              {
-                case 200:
-                  // eslint-disable-next-line no-console
-                  window.location = "https://mattermost.stage.vivaconagua.org";
-                  break;
-              }
-            }).catch(function (error) {
-            switch (error.response.status) {
-              case 500:
-                // eslint-disable-next-line no-console
-                console.log;
-                break;
-            }
-          }).finally(() => this.loading = false)
-        }
-      });
-        /*} else {
-          // eslint-disable-next-line no-console
-          console.log('error submit!!');
-          return false;
-        }
-      });*/
     },
   },
   mounted () {
