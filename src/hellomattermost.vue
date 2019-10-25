@@ -46,7 +46,6 @@ import StepTwo from '@/components/mattermost/StepTwo'
 import StepThree from '@/components/mattermost/StepThree'
 import StepFour from '@/components/mattermost/StepFour'
 
-
 export default {
   name: 'hellomattermost',
   components: {
@@ -61,6 +60,7 @@ export default {
 
   data() {
     return {
+      hasAccount: false,
       login: false,
       active: 0,
     };
@@ -86,9 +86,27 @@ export default {
           }
         })
     },
+    exists () {
+      axios
+        .get('/backend/canal/mattermost/user/exists')
+        .then(() => {
+          this.hasAccount = true;
+          alert("mattermost account exists");
+        })
+        .catch (function (error) {
+          switch (error.response.status) {
+            case 401:
+              alert("mattermost account exists")
+              //location = "mattermost.";
+          }
+        }) 
+    }
+  },
+  created () {
+    this.authenticate();
   },
   mounted () {
-    this.authenticate();
+    this.exists();
   }
 }
 </script>
