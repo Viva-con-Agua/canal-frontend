@@ -24,7 +24,7 @@
       </div>
       
       <div v-if="active===2">
-        <StepThree v-on:prev="prev" v-on:next="next"/>
+        <StepThree v-on:prev="prev" v-on:next="finish"/>
       </div>
       
       <div v-if="active===3">
@@ -66,6 +66,10 @@ export default {
     };
   },
   methods: {
+    finish(){
+       if (this.active++ > 2) this.active = 0;
+       window.location.href = process.env.VUE_APP_MM_URL;
+    },
     next() {
       if (this.active++ > 2) this.active = 0;
     },
@@ -92,7 +96,7 @@ export default {
         .get('/backend/canal/mattermost/user/exists')
         .then(() => {
           this.hasNoAccount = false;
-          window.location.href = process.env.VUE_APP_MM_URL
+          window.location.href = process.env.VUE_APP_MM_URL;
         })
         .catch(() => {
           this.hasNoAccount = true;
