@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-if="login===true">
+  <div id="app" v-if="login===true&&hasNoAccount===true">
     <widget-top-navigation />
 
     <el-card class="box-card" >
@@ -60,7 +60,7 @@ export default {
 
   data() {
     return {
-      hasAccount: false,
+      hasNoAccount: false,
       login: false,
       active: 0,
     };
@@ -91,15 +91,11 @@ export default {
       axios
         .get('/backend/canal/mattermost/user/exists')
         .then(() => {
-          this.hasAccount = true;
-          alert("mattermost account exists");
+          this.hasNoAccount = true;
         })
-        .catch (function (error) {
-          switch (error.response.status) {
-            case 401:
-              alert("mattermost error")
+        .catch(() => {
+          this.hasNoAccount = true;
               //location = "mattermost.";
-          }
         }) 
     }
   },
