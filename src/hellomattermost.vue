@@ -77,6 +77,7 @@ export default {
         .get('/backend/canal/auth/login')
         .then(() => {
           this.login = true;
+          this.exists();
           
         })
         .catch (function (error) {
@@ -104,7 +105,6 @@ export default {
   },
   mounted () {
     this.authenticate();
-    this.exists();
   }
 }
 </script>
