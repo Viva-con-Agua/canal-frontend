@@ -96,16 +96,14 @@ export default {
         .catch (function (error) {
           switch (error.response.status) {
             case 401:
-              alert("mattermost account exists")
+              alert("mattermost error")
               //location = "mattermost.";
           }
         }) 
     }
   },
-  created () {
-    this.authenticate();
-  },
   mounted () {
+    this.authenticate();
     this.exists();
   }
 }
