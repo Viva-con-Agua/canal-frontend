@@ -1,6 +1,10 @@
 <template>
   <div id="app" v-if="login===true&&hasNoAccount===true">
+   
     <widget-top-navigation />
+    <VcAFrame title="VcA Page">
+        <VcAColumn size="90%">
+
 
     <el-card class="box-card" >
       <div slot="header" class="clearfix">
@@ -32,6 +36,9 @@
       </div>
     
     </el-card>
+        </VcAColumn>
+    </VcAFrame>
+
     <widget-bottom-navigation />
   </div>
 </template>
@@ -45,6 +52,8 @@ import StepOne from '@/components/mattermost/StepOne'
 import StepTwo from '@/components/mattermost/StepTwo'
 import StepThree from '@/components/mattermost/StepThree'
 import StepFour from '@/components/mattermost/StepFour'
+import { VcAFrame, VcAColumn} from 'vca-widget-base'
+import 'vca-widget-base/dist/vca-widget-base.css'
 
 export default {
   name: 'hellomattermost',
@@ -56,6 +65,8 @@ export default {
     StepTwo,
     StepThree,
     StepFour,
+    VcAFrame, 
+    VcAColumn, 
   },
 
   data() {
@@ -95,12 +106,11 @@ export default {
       axios
         .get('/backend/canal/mattermost/user/exists')
         .then(() => {
-          this.hasNoAccount = false;
-          window.location.href = process.env.VUE_APP_MM_URL;
+          this.hasNoAccount = true;
+          //window.location.href = process.env.VUE_APP_MM_URL;
         })
         .catch(() => {
-          this.hasNoAccount = true;
-              //location = "mattermost.";
+          location = "mattermost.";
         }) 
     }
   },
@@ -128,7 +138,7 @@ export default {
 }
 
 .box-card {
-  width: 50%;
+  width: 100%;
 }
 
 
