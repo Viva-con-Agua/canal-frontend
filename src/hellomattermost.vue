@@ -3,20 +3,20 @@
     <widget-top-navigation />
     
     <div id=content>
-      <VcAFrame title="VcA Page">
+        <VcAFrame :title="$i18n.t('elements.title')">
         <VcAColumn size="90%">
 
 
     <el-card class="box-card" >
       <div slot="header" class="clearfix">
         <span class="head">
-          Say "hello" to Mattermost!
+          {{ $i18n.t('elements.title') }}
         </span>
 
         <el-steps class="steps" :active="active" finish-status="success">
-          <el-step title="Step 1"></el-step>
-          <el-step title="Step 2"></el-step>
-          <el-step title="Step 3"></el-step>
+          <el-step :title="$i18n.t('elements.step1')"></el-step>
+          <el-step :title="$i18n.t('elements.step2')"></el-step>
+          <el-step :title="$i18n.t('elements.step3')"></el-step>
         </el-steps>
 
       </div>
@@ -72,8 +72,8 @@ export default {
 
   data() {
     return {
-      hasNoAccount: false,
-      login: false,
+      hasNoAccount: true,
+      login: true,
       active: 0,
     };
   },
@@ -137,6 +137,7 @@ export default {
     flex-grow: 1;
     display: flex;
     overflow: auto;
+    width: 100%;
   }
 /*#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -155,7 +156,8 @@ export default {
 }
 
 .box-card {
-  width: 100%;
+  margin: 0 auto auto auto;
+  width: 60%;
 }
 
 

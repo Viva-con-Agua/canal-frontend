@@ -1,60 +1,82 @@
 <template>
-        <el-form :model="pwds" :rules="rules"  ref="pwds" :label-position="'top'" label-width="120px">
+        <el-form :model="passwords" :rules="rules"  ref="passwords" :label-position="'top'" label-width="120px">
         <p>
-          Unser Ziel ist es, die best mögliche User-Experience für dich bereit zu stellen. Damit Du mit möglichst wenigen Klicks zu allen neuen Funktionen gelangst.
+          {{ $i18n.t('components.stepTwo.whyCanal') }}
         </p>
         <p>
-          Allerdings ist es uns nicht möglich, dein Passwort Mattermost mitzuteilen, setzte daher hier unten ein neues!
+          {{ $i18n.t('components.stepTwo.newPassword') }}
         </p>
-        <p style="font-weight: bold">
-          security first!!! password is a bad password
-        </p>
-        <el-form-item label="Passwort:" prop="pwd1">
-        <VuePasswordAuto
-          v-model="pwds.pwd1"
-          id="second"
-          type="text"
-        />
-        </el-form-item>
-        <el-form-item label="Passwort wiederholen:" prop="pwd2" ref="pwds">
-          <el-input v-model="pwds.pwd2" placeholder="Bitte erneut eintippen" show-password></el-input>
-        </el-form-item>
 
+        <el-form-item :label="$i18n.t('elements.label.password')" prop="passwordOne" ref="passwords">
+          <el-input v-model="passwords.passwordOne" :placeholder="$i18n.t('elements.placeholder.password')" show-password></el-input>
+        </el-form-item>
+        <el-form-item :label="$i18n.t('elements.label.checkPassword')" prop="passwordTwo" ref="passwords">
+          <el-input v-model="passwords.passwordTwo" :placeholder="$i18n.t('elements.placeholder.checkPassword')" show-password></el-input>
+        </el-form-item>
+        <el-form-item :label="$i18n.t('elements.label.dsgvo')" prop="dsgvo" ref="dsgvo">
+          <el-checkbox v-model="passwords.dsgvo">{{ $i18n.t('elements.checkBoxs.dsgvo') }}</el-checkbox>
+        </el-form-item>
         <el-button-group style="margin: 12px;float: right;" >
-          <el-button @click="prev" icon="el-icon-arrow-left" type="secondary">zurück</el-button>
-          <el-button @click="submitForm" type="primary">weiter<i class="el-icon-arrow-right "></i></el-button>
+          <el-button @click="prev" icon="el-icon-arrow-left" type="secondary">{{ $i18n.t('elements.buttons.back') }}</el-button>
+          <el-button @click="submitForm" type="primary">{{ $i18n.t('elements.buttons.next') }}<i class="el-icon-arrow-right "></i></el-button>
         </el-button-group>
       </el-form>
 </template>
 <script>
-
-import {VuePasswordAuto} from 'vue-password'
+//import { VuePassword } from 'vue-password'
 import axios from 'axios'
 export default {
   name: 'StepTwo',
   components: {
-    VuePasswordAuto,
-  },
+    },
   data () {
-    var validatePass = (rule, pwd1, callback) => {
-      if (pwd1 === '') {
-        callback(new Error('Please input the password again'));
-      } else if (pwd1 !== this.pwds.pwd1) {
-        callback(new Error('Two inputs don\'t match!'));
+    // RegEx	Description
+    // ^	The password string will start this way
+    // (?=.*[a-z])	The string must contain at least 1 lowercase alphabetical character
+    // (?=.*[A-Z])	The string must contain at least 1 uppercase alphabetical character
+    // (?=.*[0-9])	The string must contain at least 1 numeric character
+    // (?=.[!@#\$%\^&])	The string must contain at least one special character, but we are escaping reserved RegEx characters to avoid conflict
+    // (?=.{8,})	The string must be eight characters or longer
+    //  const RegExp = ("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{10,})");
+
+    var validatePassOne = (rule, passwordOne, callback) => {
+      if (passwordOne === '') {
+        callback(new Error( this.$i18n.t('components.stepTwo.rules.inputPasswordOne') ));
+      } else {
+        if (passwordOne !== '') {
+          this.$refs.passwords.validateField('passwords');
+        }
+        callback();
+      }
+    };
+    var validatePassTwo = (rule, passwordTwo, callback) => {
+      if (passwordTwo === '') {
+        callback(new Error( this.$i18n.t('components.stepTwo.rules.inputPasswordTwo') ));
+      } else if (passwordTwo !== this.passwords.passwordOne) {
+        callback(new Error( this.$i18n.t('components.stepTwo.rules.inputMismatched') ));
       } else {
         callback();
       }
     };
 
     return {
-      pwds: {
-        pwd1: "",
-        pwd2: "",
+      passwords: {
+        passwordOne: "",
+        passwordTwo: "",
+        dsgvo: false,
       },
       rules: {
-        pwd2: [
-          { validator: validatePass, trigger: 'blur'}
+        passwordOne: [
+          { required: true, pattern:/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{10,})/ ,message: this.$i18n.t('components.stepTwo.rules.inputPattern'), trigger: 'blur' },
+          { validator: validatePassOne, trigger: 'blur'}
         ],
+        passwordTwo: [
+          { required: true },
+          { validator: validatePassTwo, trigger: 'blur'}
+        ],
+        dsgvo: [
+          { required: true, message: this.$i18n.t('components.stepTwo.rules.readDSGVO'), trigger: 'change'}
+        ]
       }
     }
   },
@@ -63,10 +85,10 @@ export default {
       this.$emit('prev')
     },
     submitForm() {
-      this.$refs.pwds.validate((valid) => {
-        if (valid) {
+      this.$refs.passwords.validate((valid) => {
+        if (valid && this.checked == true) {
           axios
-            .post('/backend/canal/mattermost/user', { 'password': this.pwds.pwd1 })
+            .post('/backend/canal/mattermost/user', { 'password': this.passwords.passwordOne })
             .then(() => {
                   this.$emit('next')
             })

@@ -1,8 +1,7 @@
 <template>
       <span>
         <p>
-          Du wirst in kürze zur Anmeldeseite von Mattermost weitergeleitet...
-          Sollte dies nicht der fall sein klicke bitte <a href="https://mattermost.vivaconagua.org">hier</a>
+          {{ $i18n.t('components.stepFour.forward') }}
         </p>
       </span>
 </template>

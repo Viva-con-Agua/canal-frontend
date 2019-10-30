@@ -1,12 +1,12 @@
 <template>
 <span>
 <p style="font-weight: bold">
-          Primaaa! Ich danke dir! Viel Spass mit Mattermost.
+           {{ $i18n.t('components.stepThree.thanks') }}
         </p>
 
         <el-button-group style="margin: 12px;float: right;" >
-          <el-button @click="prev" icon="el-icon-arrow-left" type="secondary">zurück</el-button>
-          <el-button @click="next" type="primary">fertig<i class="el-icon-circle-check "></i></el-button>
+          <el-button @click="prev" icon="el-icon-arrow-left" type="secondary">{{ $i18n.t('elements.buttons.back') }}</el-button>
+          <el-button @click="next" type="primary">{{ $i18n.t('elements.buttons.finish') }}<i class="el-icon-circle-check "></i></el-button>
         </el-button-group>
       </span>
 </template>
