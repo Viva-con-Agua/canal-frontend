@@ -111,7 +111,7 @@ export default {
           //window.location.href = process.env.VUE_APP_MM_URL;
         })
         .catch(() => {
-          location = "mattermost.";
+          window.location.href = process.env.VUE_APP_MM_URL;
         }) 
     }
   },
