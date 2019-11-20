@@ -7,9 +7,11 @@ import axios from 'axios'
 import VueAxios from "vue-axios";
 import App from './hellomattermost.vue'
 import VueI18n from 'vue-i18n'
-import en from './lang/en_US'
+//import en from './lang/en_US'
+import en from './lang/Pool_2.0_Canal_German'
 import enElement from 'element-ui/lib/locale/lang/en'
-import de from './lang/de_DE'
+//import de from './lang/de_DE'
+import de from './lang/Pool_2.0_Canal_German'
 import deElement from 'element-ui/lib/locale/lang/de'
 
 Vue.use(VueI18n)

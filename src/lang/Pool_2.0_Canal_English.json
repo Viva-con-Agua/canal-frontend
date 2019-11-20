@@ -1,0 +1,52 @@
+{
+    "elements": {
+        "title": "Say 'hello' to Mattermost!",
+        "step1": "Step 1",
+        "step2": "Step 2",
+        "step3": "Step 3",
+        "step4": "Step 4",
+        "buttons": {
+            "next": "next",
+            "back": "previous",
+            "finish": "finish"
+        },
+        "label": {
+            "password": "Password:",
+            "checkPassword": "Retype Password:",
+            "dsgvo": "Privacy Information:"
+        },
+        "placeholder": {
+            "password": "Please type your Password",
+            "checkPassword": "Please retype your Password again"
+        },
+        "checkBoxs": {
+            "dsgvo": "Please select, that you have read the <a href=\"https://www.vivaconagua.org/datenschutzerklaerung\">Privacy Information</a>"
+        }
+    },
+    "components": {
+        "stepOne": {
+            "head": " ",
+            "whatIsMattermost": "Mattermost is an open-source, self-hostable online chat service. It is designed as an internal chat for organisations and companies, and mostly markets itself as an alternative to Slack.",
+            "getMattermost": "You can download Mattermost to your workstation or mobile phone, if you dont want to use the web-application. \nFollow <a href=\"https://mattermost.com/download\">this</a> link to Download Mattermost.   ",
+            "howToMattermost": "A How-to Mattermost isn't ready yet. Please use the offical guide for further Information. <a href=\"https://docs.mattermost.com/guides/user.html\">Users guide</a>",
+            "followInstructions": "Please follow these steps to connect your Pool^2 Account with Mattermost."
+        },
+        "stepTwo": {
+            "whyCanal": "We need a new Password for your Mattermost account. Watch out! \nThe Password must contain at least 1 lowercase alphabetical character, 1 uppercase alphabetical character, 1 numeric character, one special character (! @ # $ % ^ &) and must be ten characters or longer!",
+            "newPassword": " ",
+            "rules": {
+                "inputPasswordOne": "Please input the password",
+                "inputPasswordTwo": "Please input the password again",
+                "inputMismatched": "Two inputs don't match!",
+                "inputPattern": "This Password is to easy....",
+                "readDSGVO": "Please select, that you have read the <a href=\"https://www.vivaconagua.org/datenschutzerklaerung\">Privacy Information</a>"
+            }
+        },
+        "stepThree": {
+            "thanks": "Primaaaa! You will receive an e-mail in the next few minutes. Have fun with Mattermost."
+        },
+        "stepFour": {
+            "forward": "You should be forwarded to the login Page of Mattermost, otherwise click on <a href=\"https://mattermost.vivaconagua.org\\\">this link</>"
+        }
+    }
+}
