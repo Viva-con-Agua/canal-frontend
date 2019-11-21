@@ -5,9 +5,11 @@
         </p>
         <p>
           {{ $i18n.t('components.stepOne.getMattermost') }}
+          <a href="https://mattermost.com/download">Mattermost</a>
         </p>
         <p>
           {{ $i18n.t('components.stepOne.howToMattermost') }}
+          <a href="https://docs.mattermost.com/guides/user.html">Guide</a>
         </p>
         <p>
           {{ $i18n.t('components.stepOne.followInstructions') }}

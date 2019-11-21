@@ -20,15 +20,15 @@
             "checkPassword": "Passwort wiederholen"
         },
         "checkBoxs": {
-            "dsgvo": "Bitte lies die <a href=\"https://www.vivaconagua.org/datenschutzerklaerung\">Datenschutzerklärung</a>"
+            "dsgvo": "Bitte lies die "
         }
     },
     "components": {
         "stepOne": {
             "head": " ",
             "whatIsMattermost": "Mattermost ist ein freier webbasierter Instant-Messaging-Dienst. Du kannst sowohl private Einzel- und Gruppennachrichten verschicken, als auch teamöffentliche Gruppenchats in \"Kanälen\" organisieren. Mattermost funktioniert damit ähnlich wie die marktführenden Softwares Microsoft Teams und Slack.\n\nJede größere Organisationseinheit (also alle Crews und die Festangestellten der Vereine und Social Business) bekommen separate \"Teams\". Das sind abgeschlossene Räume in denen \"Kanäle\" angelegt werden. Einzelne \"Kanäle\" können zwischen den \"Teams\" verbunden werden. Damit soll die Kommunikation zwischen den verschiedenen Organisationseinheiten ermöglicht werden. \n\nWenn du das nicht sofort verstehst, ist das vollkommen ok. Deine Fragen werden sich vermutlich mit der Nutzung klären. Außerdem gibt es einen \"Kanal\" in dem dir alle Fragen zu Mattermost beantwortet werden.",
-            "getMattermost": "Du kannst Mattermost selbstverständlich auch als App auf deinem Arbeitsgerät installieren. Um zum Downloadbereich zu gelangen klicke einfach <a href=\"https://mattermost.com/download\">hier</a>",
-            "howToMattermost": "Informationen zu Mattermost findest du im offiziellen <a href=\"https://docs.mattermost.com/guides/user.html\"Users Guide</a>. Darüber hinaus gibt es in jedem \"Team\" einen \"Kanal\", in dem alle deine Fragen rund um Mattermost beantwortet werden. ",
+            "getMattermost": "Du kannst Mattermost selbstverständlich auch als App auf deinem Arbeitsgerät installieren. Um zum Downloadbereich zu gelangen klicke einfach auf -> ",
+            "howToMattermost": "Im Cosmos Team findest du einen Channel in dem dir alle Fragen zu Mattermost beantwortet werden. Aber lies dir bitte zuerst für weitere Informationen den User Guide durch. ",
             "followInstructions": "Folge den Anweisungen um deinen Pool Account mit deinem Mattermost Konto zu verknüpfen."
         },
         "stepTwo": {
@@ -46,7 +46,7 @@
             "thanks": "Jetzt kann es losgehen. Viel Spaß mit unserem neuen Kommunikationstool. "
         },
         "stepFour": {
-            "forward": "Du wirst in kürze zur Anmeldeseite von Mattermost weitergeleitet...\\n Sollte dies nicht der fall sein klicke bitte <a href=\\\"https://mattermost.vivaconagua.org\\\">hier</a>"
+            "forward": "Du wirst in kürze zur Anmeldeseite von Mattermost weitergeleitet...\\n Sollte dies nicht der fall sein klicke bitte auf folgenden "
         }
     }
 }
