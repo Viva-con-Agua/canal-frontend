@@ -135,7 +135,8 @@ export default {
   }
   #content {
     flex-grow: 1;
-    display: flex;
+    flex-shrink: 0;
+    /*display: flex;*/
     overflow: auto;
     width: 100%;
   }
