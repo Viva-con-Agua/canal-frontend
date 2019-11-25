@@ -7,13 +7,13 @@
           {{ $i18n.t('components.stepTwo.newPassword') }}
         </p>
 
-        <el-form-item :label="$i18n.t('elements.label.password')">
+        <el-form-item :label="$i18n.t('elements.label.password')" prop="passwordOne" ref="passwords">
           <el-input v-model="passwords.passwordOne" :placeholder="$i18n.t('elements.placeholder.password')" show-password></el-input>
         </el-form-item>
-        <el-form-item :label="$i18n.t('elements.label.checkPassword')">
+        <el-form-item :label="$i18n.t('elements.label.checkPassword')" prop="passwordTwo" ref="passwords">
           <el-input v-model="passwords.passwordTwo" :placeholder="$i18n.t('elements.placeholder.checkPassword')" show-password></el-input>
         </el-form-item>
-        <el-form-item :label="$i18n.t('elements.label.dsgvo')">
+        <el-form-item :label="$i18n.t('elements.label.dsgvo')" prop="dsgvo" ref="dsgvo">
           <el-checkbox v-model="passwords.dsgvo">{{ $i18n.t('elements.checkBoxs.dsgvo') }}<a href="https://www.vivaconagua.org/datenschutzerklaerung">DSGVO</a></el-checkbox>
         </el-form-item>
         <el-button-group style="margin: 12px;float: right;" >
@@ -86,7 +86,7 @@ export default {
     },
     submitForm() {
       this.$refs.passwords.validate((valid) => {
-        if (valid && this.checked == true) {
+        if (valid) {
           axios
             .post('/backend/canal/mattermost/user', { 'password': this.passwords.passwordOne })
             .then(() => {
