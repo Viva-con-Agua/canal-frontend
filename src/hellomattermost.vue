@@ -72,8 +72,8 @@ export default {
 
   data() {
     return {
-      hasNoAccount: true,
-      login: true,
+      hasNoAccount: false,
+      login: false,
       active: 0,
     };
   },
