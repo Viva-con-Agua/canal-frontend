@@ -107,11 +107,10 @@ export default {
       axios
         .get('/backend/canal/mattermost/user/exists')
         .then(() => {
-          this.hasNoAccount = true;
-          //window.location.href = process.env.VUE_APP_MM_URL;
+          window.location.href = process.env.VUE_APP_MM_URL;
         })
         .catch(() => {
-          window.location.href = process.env.VUE_APP_MM_URL;
+          this.hasNoAccount = true;
         }) 
     }
   },
