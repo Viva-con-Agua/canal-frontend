@@ -1,6 +1,5 @@
 
 
-process.env.VUE_APP_MM_URL = 'http://mattermost.localhost',
 module.exports = {
   pluginOptions: {
     i18n: {
