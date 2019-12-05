@@ -20,7 +20,9 @@
             "checkPassword": "Passwort wiederholen"
         },
         "checkBoxs": {
-            "dsgvo": "Bitte lies die "
+            "dsgvo": "Ich habe die {0} gelesen  \n und erkläre mich damit einverstanden",
+            "dsgvolink": "Datenschutzerklärung"
+
         }
     },
     "components": {
@@ -39,7 +41,7 @@
                 "inputPasswordTwo": "Du hast dein Passwort nicht wiederholt",
                 "inputMismatched": "Beide Passwörter stimmen nicht überein",
                 "inputPattern": "Bitte beachte die oben aufgelisteten Passwortanforderungen",
-                "readDSGVO": "Bitte abhaken"
+                "readDSGVO": "Ich habe die Datenschutzerklärung gelesen und erkläre mich damit einverstanden"
             }
         },
         "stepThree": {

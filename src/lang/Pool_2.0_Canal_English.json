@@ -20,7 +20,8 @@
             "checkPassword": "Please retype your Password again"
         },
         "checkBoxs": {
-            "dsgvo": "Please select, that you have read the privacy information "
+            "dsgvo": "I have read the {0} and agree ",
+            "dsgvolink": "Privacy Policy" 
         }
     },
     "components": {
@@ -39,7 +40,7 @@
                 "inputPasswordTwo": "Please input the password again",
                 "inputMismatched": "Two inputs don't match!",
                 "inputPattern": "This Password is to easy....",
-                "readDSGVO": "Please select, that you have read the Privacy Information"
+                "readDSGVO": "I have read the Privacy Policy and agree"
             }
         },
         "stepThree": {

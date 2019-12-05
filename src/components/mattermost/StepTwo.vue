@@ -14,7 +14,11 @@
           <el-input v-model="passwords.passwordTwo" :placeholder="$i18n.t('elements.placeholder.checkPassword')" show-password></el-input>
         </el-form-item>
         <el-form-item :label="$i18n.t('elements.label.dsgvo')" prop="dsgvo" ref="dsgvo">
-          <el-checkbox v-model="passwords.dsgvo">{{ $i18n.t('elements.checkBoxs.dsgvo') }}<a href="https://www.vivaconagua.org/datenschutzerklaerung">DSGVO</a></el-checkbox>
+          <el-checkbox v-model="passwords.dsgvo">
+        		<i18n path="elements.checkBoxs.dsgvo" tag="label" for="terms">
+			        <a href="https://www.vivaconagua.org/datenschutzerklaerung" target="_blank">{{ $t('elements.checkBoxs.dsgvolink') }}</a>
+			      </i18n>
+            </el-checkbox>
         </el-form-item>
         <el-button-group style="margin: 12px;float: right;" >
           <el-button @click="prev" icon="el-icon-arrow-left" type="secondary">{{ $i18n.t('elements.buttons.back') }}</el-button>
@@ -67,7 +71,7 @@ export default {
       },
       rules: {
         passwordOne: [
-          { required: true, pattern:/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{10,})/ ,message: this.$i18n.t('components.stepTwo.rules.inputPattern'), trigger: 'blur' },
+          { required: true, pattern:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/ ,message: this.$i18n.t('components.stepTwo.rules.inputPattern'), trigger: 'blur' },
           { validator: validatePassOne, trigger: 'blur'}
         ],
         passwordTwo: [
