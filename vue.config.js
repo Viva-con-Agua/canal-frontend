@@ -1,5 +1,4 @@
-
-
+process.env.VUE_APP_MM_URL = 'https://mattermost.vivaconagua.org',
 module.exports = {
   pluginOptions: {
     i18n: {
